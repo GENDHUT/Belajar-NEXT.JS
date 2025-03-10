@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import Link from "next/link";
+import InputSearch from "./InputSearch";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -8,13 +9,13 @@ const Navbar = () => {
   return (
     <nav className="bg-gray-800 text-white px-6 py-4">
       <div className="max-w-7xl mx-auto flex items-center justify-between">
-        {/* Logo di kiri */}
+        {/* Logo */}
         <div className="flex-shrink-0">
           <Link href="/" className="text-2xl font-bold">
             🐻GENDHUTLIST🐼
           </Link>
         </div>
-        {/* Menu Navigasi (Anime & Manga) di tengah untuk layar md ke atas */}
+        {/* Menu navigasi (Desktop) */}
         <div className="hidden md:flex flex-1 justify-center space-x-6">
           <Link
             href="/anime"
@@ -29,23 +30,24 @@ const Navbar = () => {
             Manga
           </Link>
         </div>
-        {/* Kolom Search di kanan untuk layar md ke atas */}
+        {/* Kolom pencarian (Desktop) */}
         <div className="hidden md:flex items-center">
-          <div className="flex items-center space-x-2">
-            <input
-              type="text"
-              placeholder="cari disini..."
-              className="px-3 py-2 rounded bg-gray-700 focus:outline-none focus:bg-gray-600"
-            />
-            <button className="px-3 py-2 hover:bg-gray-700 rounded transition-colors duration-300">
-              🔍
-            </button>
+          <div className="w-64">
+            <InputSearch />
           </div>
         </div>
-        {/* Hamburger menu untuk layar kecil */}
+        {/* Hamburger menu (Mobile) */}
         <div className="md:hidden">
-          <button onClick={() => setIsOpen(!isOpen)} className="focus:outline-none">
-            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <button
+            onClick={() => setIsOpen(!isOpen)}
+            className="focus:outline-none"
+          >
+            <svg
+              className="w-6 h-6"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
               {isOpen ? (
                 <path
                   strokeLinecap="round"
@@ -65,7 +67,7 @@ const Navbar = () => {
           </button>
         </div>
       </div>
-      {/* Mobile Menu */}
+      {/* Menu Mobile */}
       {isOpen && (
         <div className="mt-4 md:hidden">
           <div className="px-2 pt-2 pb-3 space-y-1">
@@ -81,15 +83,9 @@ const Navbar = () => {
             >
               Manga
             </Link>
-            <div className="flex items-center space-x-2 px-4 py-2">
-              <input
-                type="text"
-                placeholder="cari disini..."
-                className="w-full px-3 py-2 rounded bg-gray-700 focus:outline-none focus:bg-gray-600"
-              />
-              <button className="px-3 py-2 hover:bg-gray-700 rounded transition-colors duration-300">
-                🔍
-              </button>
+            {/* Pencarian Mobile menggunakan InputSearch */}
+            <div className="px-4 py-2">
+              <InputSearch />
             </div>
           </div>
         </div>
