@@ -20,7 +20,7 @@ const Page = () => {
     fetchData();
   }, [page]);
 
-  // Tampilkan loading sampai data tersedia
+
   if (!data) return <div className="loader"></div>;
 
   return (
